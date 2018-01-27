@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Bot</title>
+    <link rel="stylesheet" type="text/css" href="https://dwln9tzsi7g07.cloudfront.net/Assets/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/semantic-pykih-theme.css">
+    <link rel="stylesheet" type="text/css" href="src/css/styles.css">
+    <script src="./lib/js/ApiAi.js"></script>
+  </head>
+  <body>
+    <div id="rainfall-div"></div>
+    <script src = "dist/0.0.1/login.min.js"></script>
+    <script type="text/javascript">
+    var x = new ProtoGraph.Card.toCardName();
+    x.init({
+      selector: document.querySelector('#rainfall-div'),
+      data_url: "dist/0.0.1/sample.json",
+      schema_url: "dist/0.0.1/schema.json",
+      configuration_url: "dist/0.0.1/configuration_sample.json",
+      configuration_schema_url: 'dist/0.0.1/configuration_schema.json'
+    })
+
+    if (window.innerWidth <= 500) {
+      x.renderMobile();
+    } else {
+      x.renderLaptop();
+    }
+    </script>
+  </body>
+</html>
