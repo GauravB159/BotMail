@@ -7,13 +7,34 @@ body{
 #rainfall-div{
 	height:100vh;
 }
+.meetings{
+	display: inline-block;
+	width: 20%;
+	text-align: left;
+	font-size: 34px;
+	color: white;
+	margin-top: 20px;
+	margin-left:20px;
+	margin-bottom: 10px;
+}
+.rbc-header{
+	font-size: 16px !important;
+}
 .agenda{
 	height:100%;
 	width:25%;
+	padding:0 8px;
 	float:left;
 }
 .main{
 	height:100%;
+	padding:0 8px;
+}
+.agenda-header{
+	font-size: 24px;
+	margin-left: 12%;
+	margin-bottom: 17px;
+	margin-top:4px;
 }
 .container{
 	height:93%;
@@ -31,8 +52,17 @@ body{
 	margin-bottom: 30px;
 	margin-left: -40px;
 }
+.header{
+	background-color: #3174ad !important;
+}
+.launcher{
+	background-color: #3174ad !important;
+}
 .calendar{
 	height:100%;
+}
+.red{
+	background-color:#D50F25;
 }
 #headDiv {
 	width: 100%;
@@ -42,11 +72,46 @@ body{
 }
 #nameDiv {
 	display: inline-block;
-	width: 80%;
+	width: 52%;
 	text-align: left;
 	font-size: 34px;
 	color: white;
 	margin-top: 20px;
 	margin-left:20px;
 	margin-bottom: 10px;
+}
+.ranges {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+.rowTitle {
+	width: 20%;
+	text-align: center;
+}
+.rowSlider {
+	width: 70%;
+	text-align: center;
+}
+.rowCheck {
+	width: 10%;
+	text-align: center;
+}
+tr {
+	height: 40px;
+	text-align: center;
+}
+.submitButton {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+		margin-left: auto;
+		margin-right: auto;
+}
+
+.submitButton:hover {
+    background-color: #4CAF50;
+    color: white;
 }

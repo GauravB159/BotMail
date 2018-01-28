@@ -6,15 +6,48 @@ import moment from 'moment';
 import { Widget, addResponseMessage } from 'react-chat-widget';
 require('react-big-calendar/lib/css/react-big-calendar.css');
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
+import Slider from 'rc-slider';
+const createSliderWithTooltip = Slider.createSliderWithTooltip;
+const Range = createSliderWithTooltip(Slider.Range);
+import 'rc-slider/assets/index.css';
 BigCalendar.momentLocalizer(moment);
+
+const setClass = date=>{
+  if(date.busy){
+    // console.log(date);
+
+    return {
+      style: {
+          backgroundColor: "#D50F25",
+      }
+    }
+  }else{
+    return {}
+  }
+}
+
 export default class CardName extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       events: [],
-      client: new ApiAi.ApiAiClient({accessToken: '5024b204fe004def95ee70793929c0f0'}),
+      client: new ApiAi.ApiAiClient({accessToken: '15a0a172f9d54a9bb166677da9de3e5e'}),
       loggedIn: false,
-      timestamp: new Date()
+      timestamp: new Date(),
+      mondayValues: [8,16],
+      tuesdayValues: [8,16],
+      wednesdayValues: [8,16],
+      thursdayValues: [8,16],
+      fridayValues: [8,16],
+      saturdayValues: [8,16],
+      sundayValues: [8,16]
+      // mondayIsBusy: false,
+      // tuesdayIsBusy: false,
+      // wednesdayIsBusy: false,
+      // thursdayIsBusy: false,
+      // fridayIsBusy: false,
+      // saturdayIsBusy: false,
+      // sundayIsBusy: false
     }
 
   }
@@ -76,6 +109,9 @@ export default class CardName extends React.Component {
             <div id="nameDiv">
               BotMail
             </div>
+            <div className="meetings">
+              Your Meetings
+            </div>
             <GoogleLogout
               buttonText="Logout"
               onLogoutSuccess={(response)=>this.responseGoogleLogout(response)}
@@ -84,6 +120,9 @@ export default class CardName extends React.Component {
           </div>
           <div className="container">
             <div className="agenda">
+              <div className="agenda-header">
+                Agenda today onwards
+              </div>
               <BigCalendar
                 selectable
                 events={this.state.events}
@@ -97,6 +136,7 @@ export default class CardName extends React.Component {
             <div className="main">
               <BigCalendar
                 selectable
+                eventPropGetter={setClass}
                 events={this.state.events}
                 views={allViews}
                 views={['month', 'week','day']}
@@ -105,6 +145,79 @@ export default class CardName extends React.Component {
                 defaultDate={new Date()}
               />
             </div>
+            {/* <table className="ranges">
+              <tr>
+                <th>Day</th>
+                <th>Free time</th>
+                <th>Busy?</th>
+              </tr>
+              <tr>
+                <td className="rowTitle">Monday</td>
+                <td className="rowSlider">
+                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.mondayValues} tipFormatter={value => `${value}:00`} onChange={this.setState(mondayValues: )} />
+                </td>
+                <td className="rowCheck">
+                  <input type="checkbox" id="monday"/>
+                </td>
+              </tr>
+              <tr>
+                <td className="rowTitle">Tuesday</td>
+                <td className="rowSlider">
+                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.tuesdayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
+                </td>
+                <td className="rowCheck">
+                  <input type="checkbox" id="tuesday"/>
+                </td>
+              </tr>
+              <tr>
+                <td className="rowTitle">Wednesday</td>
+                <td className="rowSlider">
+                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.wednesdayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
+                </td>
+                <td className="rowCheck">
+                  <input type="checkbox" id="wednesday"/>
+                </td>
+              </tr>
+              <tr>
+                <td className="rowTitle">Thursday</td>
+                <td className="rowSlider">
+                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.thursdayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
+                </td>
+                <td className="rowCheck">
+                  <input type="checkbox" id="thursday"/>
+                </td>
+              </tr>
+              <tr>
+                <td className="rowTitle">Friday</td>
+                <td className="rowSlider">
+                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.fridayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
+                </td>
+                <td className="rowCheck">
+                  <input type="checkbox" id="friday"/>
+                </td>
+              </tr>
+              <tr>
+                <td className="rowTitle">Saturday</td>
+                <td className="rowSlider">
+                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.saturdayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
+                </td>
+                <td className="rowCheck">
+                  <input type="checkbox" id="saturday"/>
+                </td>
+              </tr>
+              <tr>
+                <td className="rowTitle">Sunday</td>
+                <td className="rowSlider">
+                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.sundayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
+                </td>
+                <td className="rowCheck">
+                  <input type="checkbox" id="sunday"/>
+                </td>
+              </tr>
+              <tr>
+                <button className="submitButton" onClick={this.submit}>Submit</button>
+              </tr>
+            </table> */}
           </div>
           <Widget
             handleNewUserMessage={(text)=>this.testChat(text)}
@@ -115,6 +228,14 @@ export default class CardName extends React.Component {
     }
   }
 
+  // setDaysRange(e) {
+  //   console.log(e);
+  // }
+  //
+  // submit() {
+  //
+  // }
+
   responseGoogle(response) {
     console.log(response);
   }
@@ -124,7 +245,6 @@ export default class CardName extends React.Component {
     .then((response)=> {
       let data = this.state.events;
       let newEvents = response.data;
-      console.log(response);
       newEvents = newEvents.map((event,i)=>{
         let start = event.start_time;
         start = event.date+'T'+start;
@@ -133,19 +253,18 @@ export default class CardName extends React.Component {
         let newEvent = {};
         newEvent['start']=new Date(Date.parse(start));
         newEvent['end']=new Date(Date.parse(end));
-        newEvent['id']=event.pk;
-        newEvent['title']=event.client.name
+        newEvent['id']=data.length+i;
+        newEvent['pk']=event.pk;
+        newEvent['busy']=event.busy;
+        if(event.busy){
+          newEvent['title']='Busy'
+        }else{
+          newEvent['title']=event.client.name
+        }
         return newEvent;
       });
-      newEvents.forEach((event)=>{
-        if(event.id > data.length)
-          data.push(event);
-        else {
-          console.log("Repeated");
-        }
-      })
       this.setState({
-        events:data
+        events:newEvents
       })
     })
 
@@ -167,12 +286,19 @@ export default class CardName extends React.Component {
           let newEvent = {};
           newEvent['start']=new Date(Date.parse(start));
           newEvent['end']=new Date(Date.parse(end));
-          newEvent['id']=event.pk;
-          newEvent['title']=event.client.name;
+          newEvent['id']=data.length+1;
+          newEvent['pk']=event.pk;
+          newEvent['busy']=event.busy;
+          if(event.busy){
+            newEvent['title']='Busy'
+          }else{
+            newEvent['title']=event.client.name
+          }
           return newEvent;
         });
         newEvents.forEach((event)=>{
-          if(event.id > data.length)
+          let dat = data.filter(d=>d.pk === event.pk);
+          if(dat.length === 0)
             data.push(event);
         })
         this.setState({
@@ -199,8 +325,35 @@ export default class CardName extends React.Component {
     this.state.client
     .textRequest(text)
     .then((response) => {
+      axios.get("http://email-smartbot.herokuapp.com/meeting")
+      .then((response)=> {
+        let data = this.state.events;
+        let newEvents = response.data;
+        // console.log(response);
+        newEvents = newEvents.map((event,i)=>{
+          let start = event.start_time;
+          start = event.date+'T'+start;
+          let end = event.end_time;
+          end = event.date+'T'+end;
+          let newEvent = {};
+          newEvent['start']=new Date(Date.parse(start));
+          newEvent['end']=new Date(Date.parse(end));
+          newEvent['id']=data.length+1;
+          newEvent['pk']=event.pk;
+          newEvent['busy']=event.busy;
+          if(event.busy){
+            newEvent['title']='Busy'
+          }else{
+            newEvent['title']=event.client.name
+          }
+          return newEvent;
+        });
+        console.log(newEvents);
+        this.setState({
+          events:newEvents
+        })
+      })
       addResponseMessage(response.result.fulfillment.speech)
-      console.log(response);
     })
     .catch((error) => {console.log(error);})
 

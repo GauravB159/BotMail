@@ -15,6 +15,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "passport-google-oauth": "^1.0.0",
     "passport-google-oauth2": "^0.1.6",
+    "rc-slider": "^8.6.0",
     "rc-time-picker": "^3.2.1",
     "react": "^15.5.4",
     "react-big-calendar": "^0.17.0",
@@ -23,6 +24,7 @@
     "react-dnd": "^2.5.4",
     "react-dom": "^15.5.4",
     "react-google-login": "^3.0.4",
+    "react-rangeslider": "^2.2.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
