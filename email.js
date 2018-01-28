@@ -121,6 +121,7 @@ function getEmails(auth) {
         read+=newMessages.length;
         newMessagePayload=new Array();
         newMessages && newMessages.forEach((message)=>{
+          // console.log(newMessages);
           gmail.users.messages.get({
             auth: auth,
             userId: 'me',

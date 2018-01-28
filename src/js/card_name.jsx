@@ -18,7 +18,7 @@ const setClass = date=>{
 
     return {
       style: {
-          backgroundColor: "#D50F25",
+          backgroundColor: "#ff7675",
       }
     }
   }else{
@@ -52,7 +52,6 @@ export default class CardName extends React.Component {
 
   }
   componentDidMount() {
-    // get sample json data based on type i.e string or object
 
   }
 
@@ -72,15 +71,19 @@ export default class CardName extends React.Component {
         width:"25%",
         height:"10%",
         fontSize:"20px",
-        backgroundColor:"#D50F25",
+        backgroundColor:"#cc0000",
         color:'white',
-        border:'transparent'
+        border:'transparent',
+        borderRadius: '5px'
       }
       return (
+        <div className="intro" style={{height:"300px", backgroundColor:"#00ccff"}}>
         <div className="google-login">
-          <div className="login-head">
-            BotMail
-          </div>
+
+            <img src="../src/images/icon.png" style={{width: "20%", height: "20%", marginBottom: "20px", marginLeft: "20px", marginTop:"20px"}}/>
+            <div className="login-head">
+              BotMail
+            </div>
           <GoogleLogin
             style={style}
             clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
@@ -88,6 +91,7 @@ export default class CardName extends React.Component {
             onSuccess={(response)=>this.responseGoogleSuccess(response)}
             onFailure={(response)=>this.responseGoogle(response)}
           />
+          </div>
         </div>
       )
     }
@@ -100,18 +104,19 @@ export default class CardName extends React.Component {
         width: '10%',
         cursor:'pointer',
         float:'right',
-        marginTop:'0.8%',
-        fontSize:'28px'
+        marginTop:'20px',
+        fontSize:'15px'
       }
       return (
         <div className="calendar">
           <div id="headDiv">
             <div id="nameDiv">
-              BotMail
+              <img src="../src/images/icon.png" style={{width: "40px", height: "40px", position: "relative", top: "8px", marginRight: "10px"}}/>
+              <p style={{display: "inline-block"}}>BotMail</p>
             </div>
-            <div className="meetings">
+            {/* <div className="meetings">
               Your Meetings
-            </div>
+            </div> */}
             <GoogleLogout
               buttonText="Logout"
               onLogoutSuccess={(response)=>this.responseGoogleLogout(response)}
@@ -145,79 +150,82 @@ export default class CardName extends React.Component {
                 defaultDate={new Date()}
               />
             </div>
-            {/* <table className="ranges">
-              <tr>
-                <th>Day</th>
-                <th>Free time</th>
-                <th>Busy?</th>
-              </tr>
-              <tr>
-                <td className="rowTitle">Monday</td>
-                <td className="rowSlider">
-                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.mondayValues} tipFormatter={value => `${value}:00`} onChange={this.setState(mondayValues: )} />
-                </td>
-                <td className="rowCheck">
-                  <input type="checkbox" id="monday"/>
-                </td>
-              </tr>
-              <tr>
-                <td className="rowTitle">Tuesday</td>
-                <td className="rowSlider">
-                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.tuesdayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
-                </td>
-                <td className="rowCheck">
-                  <input type="checkbox" id="tuesday"/>
-                </td>
-              </tr>
-              <tr>
-                <td className="rowTitle">Wednesday</td>
-                <td className="rowSlider">
-                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.wednesdayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
-                </td>
-                <td className="rowCheck">
-                  <input type="checkbox" id="wednesday"/>
-                </td>
-              </tr>
-              <tr>
-                <td className="rowTitle">Thursday</td>
-                <td className="rowSlider">
-                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.thursdayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
-                </td>
-                <td className="rowCheck">
-                  <input type="checkbox" id="thursday"/>
-                </td>
-              </tr>
-              <tr>
-                <td className="rowTitle">Friday</td>
-                <td className="rowSlider">
-                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.fridayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
-                </td>
-                <td className="rowCheck">
-                  <input type="checkbox" id="friday"/>
-                </td>
-              </tr>
-              <tr>
-                <td className="rowTitle">Saturday</td>
-                <td className="rowSlider">
-                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.saturdayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
-                </td>
-                <td className="rowCheck">
-                  <input type="checkbox" id="saturday"/>
-                </td>
-              </tr>
-              <tr>
-                <td className="rowTitle">Sunday</td>
-                <td className="rowSlider">
-                  <Range min={0} max={24} allowCross={false} defaultValue={this.state.sundayValues} tipFormatter={value => `${value}:00`} onChange={(e)=>this.setDaysRange(e)} />
-                </td>
-                <td className="rowCheck">
-                  <input type="checkbox" id="sunday"/>
-                </td>
-              </tr>
-              <tr>
-                <button className="submitButton" onClick={this.submit}>Submit</button>
-              </tr>
-            </table> */}
+            <div style={{width:"100%", marginBottom:"20px"}}>
+              <table className="ranges">
+                <tr>
+                  <th>Day</th>
+                  <th>Free time</th>
+                  <th>Busy?</th>
+                </tr>
+                <tr>
+                  <td className="rowTitle">Monday</td>
+                  <td className="rowSlider">
+                    <Range min={0} max={24} allowCross={false} defaultValue={this.state.mondayValues} tipFormatter={value => `${value}:00`} />
+                  </td>
+                  <td className="rowCheck">
+                    <input type="checkbox" id="monday"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="rowTitle">Tuesday</td>
+                  <td className="rowSlider">
+                    <Range min={0} max={24} allowCross={false} defaultValue={this.state.tuesdayValues} tipFormatter={value => `${value}:00`} />
+                  </td>
+                  <td className="rowCheck">
+                    <input type="checkbox" id="tuesday"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="rowTitle">Wednesday</td>
+                  <td className="rowSlider">
+                    <Range min={0} max={24} allowCross={false} defaultValue={this.state.wednesdayValues} tipFormatter={value => `${value}:00`} />
+                  </td>
+                  <td className="rowCheck">
+                    <input type="checkbox" id="wednesday"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="rowTitle">Thursday</td>
+                  <td className="rowSlider">
+                    <Range min={0} max={24} allowCross={false} defaultValue={this.state.thursdayValues} tipFormatter={value => `${value}:00`} />
+                  </td>
+                  <td className="rowCheck">
+                    <input type="checkbox" id="thursday"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="rowTitle">Friday</td>
+                  <td className="rowSlider">
+                    <Range min={0} max={24} allowCross={false} defaultValue={this.state.fridayValues} tipFormatter={value => `${value}:00`} />
+                  </td>
+                  <td className="rowCheck">
+                    <input type="checkbox" id="friday"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="rowTitle">Saturday</td>
+                  <td className="rowSlider">
+                    <Range min={0} max={24} allowCross={false} defaultValue={this.state.saturdayValues} tipFormatter={value => `${value}:00`} />
+                  </td>
+                  <td className="rowCheck">
+                    <input checked type="checkbox" id="saturday"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="rowTitle">Sunday</td>
+                  <td className="rowSlider">
+                    <Range min={0} max={24} allowCross={false} defaultValue={this.state.sundayValues} tipFormatter={value => `${value}:00`} />
+                  </td>
+                  <td className="rowCheck">
+                    <input checked type="checkbox" id="sunday"/>
+                  </td>
+                </tr>
+                {/* <tr>
+                  <button className="submitButton" onClick={this.submit}>Submit</button>
+                </tr> */}
+              </table>
+              <button className="submitButton" onClick={this.submit}>Submit</button>
+            </div>
           </div>
           <Widget
             handleNewUserMessage={(text)=>this.testChat(text)}
@@ -228,13 +236,13 @@ export default class CardName extends React.Component {
     }
   }
 
-  // setDaysRange(e) {
-  //   console.log(e);
-  // }
-  //
-  // submit() {
-  //
-  // }
+  setDaysRange(e) {
+    console.log(e);
+  }
+
+  submit() {
+
+  }
 
   responseGoogle(response) {
     console.log(response);
@@ -259,6 +267,7 @@ export default class CardName extends React.Component {
         if(event.busy){
           newEvent['title']='Busy'
         }else{
+          console.log(event);
           newEvent['title']=event.client.name
         }
         return newEvent;
